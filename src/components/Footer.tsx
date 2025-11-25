@@ -3,9 +3,9 @@ export default function Footer() {
     <footer className="footer">
       <small>
         <p>
-          © Copyright by{" "}
-          <a href="https://bytegrad.com" target="_blank">
-            ByteGrad.com
+          © Copyright by{' '}
+          <a href="https://github.com/HariYenuganti" target="_blank">
+            Hari Yenuganti
           </a>
           . Intended for learning or your portfolio.
         </p>
