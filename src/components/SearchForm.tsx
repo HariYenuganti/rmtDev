@@ -1,11 +1,27 @@
-export default function SearchForm() {
+export default function SearchForm({
+  searchText,
+  setSearchText,
+}: {
+  searchText: string;
+  setSearchText: (text: string) => void;
+}) {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(e.target.value);
+  };
+
   return (
-    <form action="#" className="search">
+    <form onSubmit={handleSubmit} action="#" className="search">
       <button type="submit">
         <i className="fa-solid fa-magnifying-glass"></i>
       </button>
 
       <input
+        value={searchText}
+        onChange={handleChange}
         spellCheck="false"
         type="text"
         required
