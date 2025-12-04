@@ -7,7 +7,7 @@ export default function Footer() {
           <a href="https://github.com/HariYenuganti" target="_blank">
             Hari Yenuganti
           </a>
-          . Intended for learning or your portfolio.
+          . Professional project demonstrating modern React development skills.
         </p>
       </small>
 
