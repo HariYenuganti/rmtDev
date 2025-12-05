@@ -3,7 +3,7 @@ import { JobItem, JobItemExpanded } from './type';
 import { BASE_API_URL } from './constants';
 import { useQueries, useQuery } from '@tanstack/react-query';
 import { handleError } from './utils';
-import { BookmarksContext } from '../context/BookmarksContextprovider';
+import { BookmarksContext } from '../context/BookmarksContextProvider';
 import { ActiveIdContext } from '../context/ActiveIdContextProvider';
 import { SearchTextContext } from '../context/SearchTextContextProvider';
 import { JobItemsContext } from '../context/JobItemsContextProvider';

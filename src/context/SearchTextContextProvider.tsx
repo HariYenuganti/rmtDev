@@ -11,7 +11,7 @@ export const SearchTextContext = createContext<SearchTextContextType | null>(
   null
 );
 
-export default function SearchTextContextprovider({
+export default function SearchTextContextProvider({
   children,
 }: {
   children: React.ReactNode;

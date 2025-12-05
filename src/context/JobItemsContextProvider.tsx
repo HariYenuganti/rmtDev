@@ -17,7 +17,7 @@ type JobItemsContextType = {
 
 export const JobItemsContext = createContext<JobItemsContextType | null>(null);
 
-export default function JobItemsContextprovider({
+export default function JobItemsContextProvider({
   children,
 }: {
   children: React.ReactNode;

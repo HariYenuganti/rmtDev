@@ -64,7 +64,7 @@ Follow these steps to set up the project locally.
 ### Prerequisites
 
 - **Node.js** (v14 or higher)
-- **npm** or **yarn**
+- **npm**
 
 ### Installation
 

@@ -7,7 +7,7 @@ type ActiveIdContextType = {
 
 export const ActiveIdContext = createContext<ActiveIdContextType | null>(null);
 
-export default function ActiveIdContextprovider({
+export default function ActiveIdContextProvider({
   children,
 }: {
   children: React.ReactNode;

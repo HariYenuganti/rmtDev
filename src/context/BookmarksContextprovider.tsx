@@ -13,7 +13,7 @@ export const BookmarksContext = createContext<BookmarksContextType | null>(
   null
 );
 
-export default function BookmarksContextprovider({
+export default function BookmarksContextProvider({
   children,
 }: {
   children: React.ReactNode;
