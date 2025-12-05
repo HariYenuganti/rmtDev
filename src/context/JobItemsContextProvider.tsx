@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useCallback, useMemo, useState } from 'react';
 import { useSearchQuery, useSearchTextContext } from '../lib/hooks';
 import { JobItem, PageDirection, SortBy } from '../lib/type';
 import { RESULTS_PER_PAGE } from '../lib/constants';
@@ -30,48 +30,68 @@ export default function JobItemsContextprovider({
 
   const totalNumberOfResults = jobItems?.length || 0;
   const totalNumberOfPages = Math.ceil(totalNumberOfResults / RESULTS_PER_PAGE);
-  const jobItemsSorted =
-    jobItems?.sort((a, b) => {
-      if (sortBy === 'relevant') {
-        return b.relevanceScore - a.relevanceScore;
-      } else if (sortBy === 'recent') {
-        return a.daysAgo - b.daysAgo;
-      }
-      return 0;
-    }) || [];
-  const jobItemsSortedAndSliced =
-    jobItemsSorted?.slice(
-      currentPage * RESULTS_PER_PAGE - RESULTS_PER_PAGE,
-      currentPage * RESULTS_PER_PAGE
-    ) || [];
 
-  const handlePageChange = (direction: PageDirection) => {
+  const jobItemsSorted = useMemo(
+    () =>
+      [...(jobItems || [])].sort((a, b) => {
+        if (sortBy === 'relevant') {
+          return b.relevanceScore - a.relevanceScore;
+        } else {
+          return a.daysAgo - b.daysAgo;
+        }
+      }),
+    [sortBy, jobItems]
+  );
+
+  const jobItemsSortedAndSliced = useMemo(
+    () =>
+      jobItemsSorted?.slice(
+        currentPage * RESULTS_PER_PAGE - RESULTS_PER_PAGE,
+        currentPage * RESULTS_PER_PAGE
+      ),
+    [jobItemsSorted, currentPage]
+  );
+
+  const handlePageChange = useCallback((direction: PageDirection) => {
     if (direction === 'next') {
       setCurrentPage((prev) => prev + 1);
     } else if (direction === 'previous') {
       setCurrentPage((prev) => prev - 1);
     }
-  };
+  }, []);
 
-  const handleSortChange = (sortBy: SortBy) => {
+  const handleSortChange = useCallback((sortBy: SortBy) => {
     setCurrentPage(1);
     setSortBy(sortBy);
-  };
+  }, []);
+
+  const contextValue = useMemo(
+    () => ({
+      jobItems,
+      jobItemsSortedAndSliced,
+      isLoading,
+      currentPage,
+      totalNumberOfResults,
+      totalNumberOfPages,
+      sortBy,
+      handlePageChange,
+      handleSortChange,
+    }),
+    [
+      jobItems,
+      jobItemsSortedAndSliced,
+      isLoading,
+      currentPage,
+      totalNumberOfResults,
+      totalNumberOfPages,
+      sortBy,
+      handlePageChange,
+      handleSortChange,
+    ]
+  );
 
   return (
-    <JobItemsContext.Provider
-      value={{
-        jobItems,
-        jobItemsSortedAndSliced,
-        isLoading,
-        currentPage,
-        totalNumberOfResults,
-        totalNumberOfPages,
-        sortBy,
-        handlePageChange,
-        handleSortChange,
-      }}
-    >
+    <JobItemsContext.Provider value={contextValue}>
       {children}
     </JobItemsContext.Provider>
   );
