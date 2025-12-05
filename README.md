@@ -9,8 +9,7 @@
   <p>
     <a href="#features">Features</a> •
     <a href="#tech-stack">Tech Stack</a> •
-    <a href="#getting-started">Getting Started</a> •
-    <a href="#license">License</a>
+    <a href="#getting-started">Getting Started</a>
   </p>
 
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
@@ -97,7 +96,3 @@ src/
 ├── App.tsx           # Main application layout
 └── main.tsx          # Application entry point
 ```
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
